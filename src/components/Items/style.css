@@ -1,0 +1,16 @@
+.items {
+  width: 200px;
+  height: 100%;
+  background-color: gray;
+  border-right: 1px solid darkgray;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.items_sections {
+  flex: 1;
+  max-height: 90%;
+  overflow-y: auto;
+}

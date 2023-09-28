@@ -1,0 +1,12 @@
+{
+  "creatures": [
+    {
+      "id": "player"
+    }
+  ],
+  "objects": [
+    {
+      "id": "ground"
+    }
+  ]
+}

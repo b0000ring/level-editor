@@ -1,0 +1,18 @@
+.map_interface {
+  position: absolute;
+  right: 32px;
+  top: 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+}
+
+.map_interface > div {
+  font-size: 24px;
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.map_interface > div:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}

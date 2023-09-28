@@ -1,0 +1,20 @@
+.item {
+  background-color: grey;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid grey;
+}
+
+.item:hover {
+  opacity: 0.8;
+}
+
+.item img {
+  width: 40px;
+  height: 40px;
+}

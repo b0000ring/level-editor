@@ -1,0 +1,25 @@
+.map {
+  flex: 1;
+  height: 100%;
+  cursor: crosshair;
+  overflow: auto;
+}
+
+.map_grid {
+  position: relative;
+  background-image:
+    linear-gradient(to right, #252424 1px, transparent 1px),
+    linear-gradient(to bottom, #252424 1px, transparent 1px);
+}
+
+.map_delete {
+  cursor: not-allowed;
+}
+
+.map_selected {
+  opacity: 0.8;
+}
+
+.selected {
+  position: absolute;
+}
