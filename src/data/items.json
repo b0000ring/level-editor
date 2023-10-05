@@ -2,11 +2,22 @@
   "creatures": [
     {
       "id": "player"
+    },
+    {
+      "id": "enemy"
     }
   ],
   "objects": [
     {
       "id": "ground"
+    }
+  ],
+  "decoration": [
+    {
+      "id": "tree"
+    },
+    {
+      "id": "bush"
     }
   ]
 }

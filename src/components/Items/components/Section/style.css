@@ -4,9 +4,12 @@
 }
 
 .section_items {
-  padding: 4px;
+  padding: 8px;
   max-height: 300px;
   overflow-y: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .section_header {

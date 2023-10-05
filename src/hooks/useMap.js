@@ -21,7 +21,6 @@ export function useMap() {
   }
 
   function exportMap() {
-    console.log(elements)
     const data = {
       items: elements
     }
