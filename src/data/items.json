@@ -12,6 +12,11 @@
       "id": "ground"
     }
   ],
+  "functional": [
+    {
+      "id": "spawn"
+    }
+  ],
   "decoration": [
     {
       "id": "tree"

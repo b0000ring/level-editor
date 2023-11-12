@@ -18,6 +18,7 @@
 
 .map_selected {
   opacity: 0.8;
+  background-color: rgba(217, 216, 216, 0.2);
 }
 
 .selected {
