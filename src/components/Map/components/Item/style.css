@@ -1,3 +1,7 @@
 .map_item {
   position: absolute;
 }
+
+.highlighted .map_item {
+  background-color: rgba(217, 216, 216, 0.2);
+}

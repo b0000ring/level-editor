@@ -1,0 +1,21 @@
+.window {
+  position: fixed;
+  background-color: gray;
+  border: 1px solid darkgray;
+  top: 50%;
+  left: 50%;
+}
+
+.window_content {
+  padding: 8px;
+}
+
+.window_header {
+  cursor: pointer;
+  height: 32px;
+  background-color: dimgray;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}

@@ -3,6 +3,7 @@ import { Items } from './components/Items'
 import { Map } from './components/Map'
 import { useCursor } from './hooks/useCursor'
 import { SelectionProvider, useSelected } from './hooks/useSelection'
+import { MapProvider } from './hooks/useMap'
 
 function App() {
   const { subscribe, update, reset } = useCursor()
@@ -25,9 +26,11 @@ function App() {
 
   return (
    <SelectionProvider>
-      <Items />
-      <Map />
-      <img hidden ref={ref} className='cursor' />
+      <MapProvider>
+        <Items />
+        <Map />
+        <img hidden ref={ref} className='cursor' />
+      </MapProvider>
     </SelectionProvider>
   )
 

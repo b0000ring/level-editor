@@ -19,6 +19,7 @@ export function Map() {
   const [coords, setCoords] = useState([0, 0])
   // add/delete
   const [mode, setMode] = useState('add')
+  const [highligh, setHighlight] = useState(false)
   const { elements, addElement, removeElements, exportMap } = useMap()
   const { getAnchor } = useGrid()
   const { reset } = useCursor()
@@ -46,7 +47,7 @@ export function Map() {
   }, [selected])
 
   return (
-    <div className={`map ${mode === 'delete' && 'map_delete'}`}>
+    <div className={`map ${highligh && 'highlighted'} ${mode === 'delete' && 'map_delete'}`}>
       <div
         ref={ref}
         onClick={mode === 'delete' ? removeItem : addItem}
@@ -58,7 +59,7 @@ export function Map() {
         )}
         {elements.map((item, i) => <Item key={item.tag + '_' + i} x={item.x} y={item.y} item={item.tag} />)}
       </div>
-      <Interface onDelete={changeMode} onExport={exportMap} />
+      <Interface onDelete={changeMode} onExport={exportMap} onHighlight={() => setHighlight(!highligh)} />
     </div>
   )
 

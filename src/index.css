@@ -83,3 +83,7 @@ div {
   width: 20px;
   height: 20px;
 }
+
+.error textarea, .error input {
+  border-color: red;
+}

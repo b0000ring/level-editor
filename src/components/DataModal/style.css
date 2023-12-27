@@ -1,0 +1,13 @@
+.data-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-modal textarea {
+  margin-bottom: 16px;
+  width: 400px;
+}
+
+.data-modal button:first-child {
+  margin-right: 4px;
+}

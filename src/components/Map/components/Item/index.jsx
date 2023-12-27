@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGrid } from '../../../../hooks/useGrid'
 import { useItem } from '../../../../hooks/useItem'
 import './style.css'
@@ -9,6 +9,10 @@ export function Item({ item, x, y, className }) {
 
   const { getAnchor } = useGrid()
   const coords = getAnchor(x, y)
+
+  useEffect(() => {
+    setIsError(false)
+  }, [item])
 
   return (
     <img

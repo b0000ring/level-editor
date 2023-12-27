@@ -1,20 +1,28 @@
-import { useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import sizeMap from '../data/size.json'
 import { useGrid } from './useGrid'
 
-export function useMap() {
+export const MapContext = createContext({})
+
+export function MapProvider({ children }) {
   const [size, setSize] = useState([0, 0])
   const [elements, setElements] = useState([])
+
   const { cellsToSize } = useGrid()
 
-  return {
-    init,
-    exportMap,
-    elements: [...elements],
-    size: [...size],
-    addElement,
-    removeElements
-  }
+  return (
+    <MapContext.Provider value={{ 
+      size,
+      elements,
+      init,
+      exportMap,
+      addElement,
+      setMap,
+      removeElements
+     }}>
+      {children}
+    </MapContext.Provider>
+  )
 
   function init(sizex, sizey) {
     setSize([sizex, sizey])
@@ -30,7 +38,12 @@ export function useMap() {
   }
 
   function addElement(item) {
+    console.log(item)
     setElements([...elements, item])
+  }
+
+  function setMap(data) {
+    setElements([...data.items])
   }
 
   function removeElements(x, y) {
@@ -46,5 +59,19 @@ export function useMap() {
     })
 
     setElements(newElements)
+  }
+}
+
+export function useMap() {
+  const { init, exportMap, elements = [], size = [], addElement, removeElements, setMap } = useContext(MapContext)
+
+  return {
+    init,
+    exportMap,
+    elements: [...elements],
+    size: [...size],
+    addElement,
+    removeElements,
+    setMap
   }
 }
