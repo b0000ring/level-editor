@@ -8,13 +8,13 @@ export function Interface({ onDelete, onExport, onHighlight }) {
 
   return (
     <div className='map_interface'>
-      <div title='Delete' style={{color: 'red'}} onClick={() => onDelete('delete')}>D</div>
       <div title='Clear' style={{color: 'lightgrey'}} onClick={() => {
         deselect()
         reset()
       }}>C</div>
-      <div title='Export' onClick={onExport} style={{color: 'green'}}>E</div>
+      <div title='Delete' style={{color: 'red'}} onClick={() => onDelete('delete')}>D</div>
       <div title='Highlight' onClick={onHighlight} style={{color: 'yellow'}}>H</div>
+      <div title='Export' onClick={onExport} style={{color: 'green'}}>E</div>
     </div>
   )
 }
