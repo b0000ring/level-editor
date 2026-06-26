@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { useGrid } from '../../../../hooks/useGrid'
 import { useItem } from '../../../../hooks/useItem'
 import './style.css'
 
-export function Item({ item, x, y, className }) {
-  const { width, height, id } = useItem(item)
+export const Item = memo(function Item({ item, x, y, className }) {
+  const { width, height, id, asset } = useItem(item)
   const [isError, setIsError] = useState(false)
 
   const { getAnchor } = useGrid()
@@ -15,17 +15,24 @@ export function Item({ item, x, y, className }) {
   }, [item])
 
   return (
-    <img
-      title={id}
-      src={isError ? '/images/default.png' : `/images/${id}.png`}
-      onError={() => setIsError(true)}
+    <div
       style={{
         width: width + 'px',
-        height: height + 'px', 
         left: coords[0] + 'px',
         top: coords[1] + 'px'
       }}
       className={`map_item ${className || ''}`}
-    />
+    >
+      <span className='map_item_name'>{id}</span>
+      <img
+        title={id}
+        src={isError ? '/images/default.png' : `/images/${asset}.png`}
+        onError={() => setIsError(true)}
+        style={{
+          width: width + 'px',
+          height: height + 'px'
+        }}
+      />
+    </div>
   )
-}
+})

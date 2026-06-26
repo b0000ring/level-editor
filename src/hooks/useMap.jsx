@@ -1,12 +1,14 @@
 import { createContext, useContext, useState } from 'react'
 import sizeMap from '../data/size.json'
+import assetMap from '../data/assets.json'
 import { useGrid } from './useGrid'
 
 export const MapContext = createContext({})
+const STORAGE_KEY = 'level-editor-map'
 
 export function MapProvider({ children }) {
   const [size, setSize] = useState([0, 0])
-  const [elements, setElements] = useState([])
+  const [elements, setElements] = useState(getSavedElements)
 
   const { cellsToSize } = useGrid()
 
@@ -18,7 +20,8 @@ export function MapProvider({ children }) {
       exportMap,
       addElement,
       setMap,
-      removeElements
+      removeElements,
+      wipeMap
      }}>
       {children}
     </MapContext.Provider>
@@ -38,17 +41,17 @@ export function MapProvider({ children }) {
   }
 
   function addElement(item) {
-    console.log(item)
-    setElements([...elements, item])
+    updateElements([...elements, item])
   }
 
   function setMap(data) {
-    setElements([...data.items])
+    updateElements([...data.items])
   }
 
   function removeElements(x, y) {
     const newElements = elements.filter(item => {
-      const { x: itemx, y: itemy } = sizeMap[item.tag]
+      const asset = assetMap[item.tag] || item.tag
+      const { x: itemx, y: itemy } = sizeMap[asset] || sizeMap.default
       const [sizex, sizey] = cellsToSize(itemx, itemy)
 
       if(x > item.x && y > item.y && x < sizex + item.x && y < sizey + item.y) {
@@ -58,12 +61,35 @@ export function MapProvider({ children }) {
       return true
     })
 
+    updateElements(newElements)
+  }
+
+  function wipeMap() {
+    setElements([])
+    localStorage.removeItem(STORAGE_KEY)
+  }
+
+  function updateElements(newElements) {
     setElements(newElements)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ items: newElements }))
+  }
+}
+
+function getSavedElements() {
+  const data = localStorage.getItem(STORAGE_KEY)
+
+  if(!data) return []
+
+  try {
+    const map = JSON.parse(data)
+    return Array.isArray(map.items) ? map.items : []
+  } catch(e) {
+    return []
   }
 }
 
 export function useMap() {
-  const { init, exportMap, elements = [], size = [], addElement, removeElements, setMap } = useContext(MapContext)
+  const { init, exportMap, elements = [], size = [], addElement, removeElements, setMap, wipeMap } = useContext(MapContext)
 
   return {
     init,
@@ -72,6 +98,7 @@ export function useMap() {
     size: [...size],
     addElement,
     removeElements,
-    setMap
+    setMap,
+    wipeMap
   }
 }

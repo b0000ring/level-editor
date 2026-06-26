@@ -1,11 +1,11 @@
 import './style.css'
 import items from '../../data/items.json'
 import { Section } from './components/Section'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { DataModal } from '../DataModal'
 
-export function Items() {
+export const Items = memo(function Items() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
@@ -22,4 +22,4 @@ export function Items() {
       {isModalOpen && createPortal(<DataModal onClose={() => setIsModalOpen(false)} />, document.body)}
     </div>
   )
-}
+})

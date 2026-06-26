@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import './style.css'
 import { Item } from '../Item'
 
-export function Section({ name, items }) {
+export const Section = memo(function Section({ name, items }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -22,4 +22,4 @@ export function Section({ name, items }) {
   function toggleOpen() {
     setIsOpen(!isOpen)
   }
-}
+})

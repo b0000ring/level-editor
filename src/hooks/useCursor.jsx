@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react'
+import assetMap from '../data/assets.json'
 
 const offset = 10
 
@@ -25,7 +26,8 @@ export function useCursor() {
 
   function set(id) {
     if(element) {
-      element.setAttribute('src', `/images/${id}.png`)
+      const asset = assetMap[id] || 'default'
+      element.setAttribute('src', `/images/${asset}.png`)
       element.removeAttribute('hidden')
     }
   }

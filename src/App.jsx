@@ -10,19 +10,41 @@ function App() {
   const { deselect } = useSelected()
 
   const ref = useRef()
+  const updateRef = useRef(update)
+  const resetRef = useRef(reset)
+  const deselectRef = useRef(deselect)
+  const subscribeRef = useRef(subscribe)
+
+  updateRef.current = update
+  resetRef.current = reset
+  deselectRef.current = deselect
+  subscribeRef.current = subscribe
+
+  useEffect(() => {
+    subscribeRef.current(ref.current)
+  }, [])
 
   useEffect(() => {
     const body = document.querySelector('body')
+    function onMouseMove(e) {
+      updateRef.current(e)
+    }
+
+    function onCancel(e) {
+      if(e.key === "Escape") {
+        resetRef.current()
+        deselectRef.current()
+      }
+    }
 
     body.addEventListener('keyup', onCancel)
-    body.addEventListener('mousemove', update)
-    subscribe(ref.current)
+    body.addEventListener('mousemove', onMouseMove)
 
     return () => {
-      body.removeEventListener('mousemove', update)
+      body.removeEventListener('mousemove', onMouseMove)
       body.removeEventListener('keyup', onCancel)
     }
-  })
+  }, [])
 
   return (
    <SelectionProvider>
@@ -34,12 +56,6 @@ function App() {
     </SelectionProvider>
   )
 
-  function onCancel(e) {
-    if(e.key === "Escape") {
-      reset()
-      deselect()
-    }
-  }
 }
 
 export default App

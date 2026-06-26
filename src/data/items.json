@@ -4,25 +4,121 @@
       "id": "player"
     },
     {
-      "id": "enemy"
+      "id": "enemy1"
+    },
+    {
+      "id": "enemy2"
+    },
+    {
+      "id": "enemy3"
+    },
+    {
+      "id": "enemy4"
+    },
+    {
+      "id": "enemy5"
+    },
+    {
+      "id": "enemy6"
+    },
+    {
+      "id": "enemy7"
     }
   ],
   "objects": [
     {
-      "id": "ground"
+      "id": "wall"
     }
   ],
   "functional": [
     {
-      "id": "spawn"
+      "id": "quest1"
+    },
+    {
+      "id": "quest2"
+    },
+    {
+      "id": "quest3"
+    },
+    {
+      "id": "quest4"
+    },
+    {
+      "id": "quest5"
+    },
+    {
+      "id": "quest6"
+    },
+    {
+      "id": "grind1"
+    },
+    {
+      "id": "grind2"
+    },
+    {
+      "id": "grind3"
+    },
+    {
+      "id": "grind4"
+    },
+    {
+      "id": "grind5"
+    },
+    {
+      "id": "grind6"
+    },
+    {
+      "id": "chest"
+    },
+    {
+      "id": "mushroom1"
+    },
+    {
+      "id": "mushroom2"
+    },
+    {
+      "id": "mushroom3"
     }
   ],
   "decoration": [
     {
-      "id": "tree"
+      "id": "tree1"
     },
     {
-      "id": "bush"
+      "id": "tree2"
+    },
+    {
+      "id": "tree3"
+    },
+    {
+      "id": "tree4"
+    },
+    {
+      "id": "tree5"
+    },
+    {
+      "id": "tree6"
+    },
+    {
+      "id": "bush1"
+    },
+    {
+      "id": "bush2"
+    },
+    {
+      "id": "bush3"
+    },
+    {
+      "id": "bush4"
+    },
+    {
+      "id": "bush5"
+    },
+    {
+      "id": "bush6"
+    },
+    {
+      "id": "bush7"
     }
   ]
 }

@@ -8,6 +8,10 @@
 .map_grid {
   position: relative;
   background-image:
+    linear-gradient(to right, #fff 3px, transparent 3px),
+    linear-gradient(to bottom, #fff 3px, transparent 3px),
+    linear-gradient(to right, #252424 3px, transparent 3px),
+    linear-gradient(to bottom, #252424 3px, transparent 3px),
     linear-gradient(to right, #252424 1px, transparent 1px),
     linear-gradient(to bottom, #252424 1px, transparent 1px);
 }
