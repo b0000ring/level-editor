@@ -12,7 +12,7 @@ export const Section = memo(function Section({ name, items }) {
       </div>
       {isOpen && (
         <div className='section_items'>
-          {items.map(item => <Item key={name} name={item.id} />)}
+          {items.map(item => <Item key={item.id} item={item} />)}
         </div>
       )} 
     </div>

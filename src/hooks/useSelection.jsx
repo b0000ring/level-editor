@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react'
 export const SelectionContext = createContext({})
 
 export function SelectionProvider({ children }) {
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState(null)
   return (
     <SelectionContext.Provider value={{ selected, setSelected }}>
       {children}
@@ -20,11 +20,11 @@ export function useSelected() {
     select,
   }
 
-  function select(id) {
-    setSelected(id)
+  function select(item) {
+    setSelected(item)
   }
 
   function deselect() {
-    setSelected('')
+    setSelected(null)
   }
 }

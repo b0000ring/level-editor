@@ -1,10 +1,13 @@
 import { createContext, useContext, useState } from 'react'
+import { CELL_SIZE, WIDTH } from '../const/map'
 import sizeMap from '../data/size.json'
 import assetMap from '../data/assets.json'
+import itemsMap from '../data/items.json'
 import { useGrid } from './useGrid'
 
 export const MapContext = createContext({})
 const STORAGE_KEY = 'level-editor-map'
+const ZONE_SIZE = 50
 
 export function MapProvider({ children }) {
   const [size, setSize] = useState([0, 0])
@@ -33,7 +36,8 @@ export function MapProvider({ children }) {
 
   function exportMap() {
     const data = {
-      items: elements
+      client: groupByZone(elements.filter(item => !isServerItem(item))),
+      server: groupByZone(elements.filter(isServerItem))
     }
 
     const string = JSON.stringify(data)
@@ -41,16 +45,16 @@ export function MapProvider({ children }) {
   }
 
   function addElement(item) {
-    updateElements([...elements, item])
+    updateElements([...elements, createElement(item, elements)])
   }
 
   function setMap(data) {
-    updateElements([...data.items])
+    updateElements(normalizeElements(getImportedElements(data)))
   }
 
   function removeElements(x, y) {
     const newElements = elements.filter(item => {
-      const asset = assetMap[item.tag] || item.tag
+      const asset = assetMap[item.type] || item.type
       const { x: itemx, y: itemy } = sizeMap[asset] || sizeMap.default
       const [sizex, sizey] = cellsToSize(itemx, itemy)
 
@@ -82,10 +86,107 @@ function getSavedElements() {
 
   try {
     const map = JSON.parse(data)
-    return Array.isArray(map.items) ? map.items : []
+    return normalizeElements(getImportedElements(map))
   } catch(e) {
     return []
   }
+}
+
+function createElement(item, elements) {
+  return {
+    id: createElementId(elements),
+    type: item.id,
+    actorType: item.actorType,
+    zone: getZone(item.x, item.y),
+    x: item.x,
+    y: item.y
+  }
+}
+
+function createElementId(elements) {
+  const existingIds = new Set(elements.map(item => item.id))
+  let id = ''
+
+  do {
+    id = crypto.randomUUID()
+  } while(existingIds.has(id))
+
+  return id
+}
+
+function normalizeElements(elements) {
+  const usedIds = new Set()
+
+  return elements.map(item => {
+    if(item.type && item.actorType && item.id && item.zone !== undefined && !usedIds.has(item.id)) {
+      usedIds.add(item.id)
+      return {
+        ...item,
+        zone: normalizeZone(item.zone)
+      }
+    }
+
+    const type = item.type || item.tag
+    const catalogItem = getCatalogItem(type)
+    const id = item.id && !usedIds.has(item.id) ? item.id : createElementId([...elements, ...usedIds].map(id => ({ id })))
+    usedIds.add(id)
+
+    return {
+      id,
+      type,
+      actorType: item.actorType || catalogItem?.actorType || type,
+      zone: item.zone === undefined ? getZone(item.x, item.y) : normalizeZone(item.zone),
+      x: item.x,
+      y: item.y
+    }
+  })
+}
+
+function getCatalogItem(type) {
+  return Object.values(itemsMap).flat().find(item => item.id === type)
+}
+
+function getImportedElements(data) {
+  if(Array.isArray(data.items)) return data.items
+
+  return [
+    ...getGroupedElements(data.client),
+    ...getGroupedElements(data.server)
+  ]
+}
+
+function isServerItem(item) {
+  return item.actorType === 'enemy' || item.actorType === 'player'
+}
+
+function getZone(x, y) {
+  const zoneColumns = Math.ceil(WIDTH / ZONE_SIZE)
+  const zoneX = Math.floor(x / CELL_SIZE / ZONE_SIZE)
+  const zoneY = Math.floor(y / CELL_SIZE / ZONE_SIZE)
+
+  return zoneY * zoneColumns + zoneX + 1
+}
+
+function normalizeZone(zone) {
+  if(typeof zone === 'string') return Number(zone.replace('zone', ''))
+
+  return zone
+}
+
+function groupByZone(elements) {
+  return elements.reduce((groups, item) => {
+    const zone = normalizeZone(item.zone)
+    groups[zone] = [...(groups[zone] || []), { ...item, zone }]
+
+    return groups
+  }, {})
+}
+
+function getGroupedElements(group) {
+  if(Array.isArray(group)) return group
+  if(!group || typeof group !== 'object') return []
+
+  return Object.values(group).flat()
 }
 
 export function useMap() {

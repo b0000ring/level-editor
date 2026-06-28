@@ -85,9 +85,9 @@ export function Map() {
         className='map_grid'
       >
         {selected && (
-          <Item className='map_selected' x={coords[0]} y={coords[1]} item={selected} />
+          <Item className='map_selected' x={coords[0]} y={coords[1]} item={selected.id} />
         )}
-        {elements.map((item, i) => <Item key={item.tag + '_' + i} x={item.x} y={item.y} item={item.tag} />)}
+        {elements.map(item => <Item key={item.id} x={item.x} y={item.y} item={item.type} />)}
       </div>
       <Interface onDelete={changeMode} onExport={exportMap} onHighlight={toggleHighlight} onWipe={wipeItems} />
     </div>
@@ -102,7 +102,8 @@ export function Map() {
     
     const anchor = getAnchor(coords[0], coords[1])
     addElement({
-      tag: selected,
+      id: selected.id,
+      actorType: selected.actorType,
       x: anchor[0],
       y: anchor[1]
     })

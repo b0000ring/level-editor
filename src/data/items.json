@@ -1,124 +1,162 @@
 {
   "creatures": [
     {
-      "id": "player"
+      "id": "player",
+      "actorType": "player"
     },
     {
-      "id": "enemy1"
+      "id": "enemy1",
+      "actorType": "enemy"
     },
     {
-      "id": "enemy2"
+      "id": "enemy2",
+      "actorType": "enemy"
     },
     {
-      "id": "enemy3"
+      "id": "enemy3",
+      "actorType": "enemy"
     },
     {
-      "id": "enemy4"
+      "id": "enemy4",
+      "actorType": "enemy"
     },
     {
-      "id": "enemy5"
+      "id": "enemy5",
+      "actorType": "enemy"
     },
     {
-      "id": "enemy6"
+      "id": "enemy6",
+      "actorType": "enemy"
     },
     {
-      "id": "enemy7"
+      "id": "enemy7",
+      "actorType": "enemy"
     }
   ],
   "objects": [
     {
-      "id": "wall"
+      "id": "wall",
+      "actorType": "wall"
     }
   ],
   "functional": [
     {
-      "id": "quest1"
+      "id": "quest1",
+      "actorType": "quest"
     },
     {
-      "id": "quest2"
+      "id": "quest2",
+      "actorType": "quest"
     },
     {
-      "id": "quest3"
+      "id": "quest3",
+      "actorType": "quest"
     },
     {
-      "id": "quest4"
+      "id": "quest4",
+      "actorType": "quest"
     },
     {
-      "id": "quest5"
+      "id": "quest5",
+      "actorType": "quest"
     },
     {
-      "id": "quest6"
+      "id": "quest6",
+      "actorType": "quest"
     },
     {
-      "id": "grind1"
+      "id": "grind1",
+      "actorType": "grind"
     },
     {
-      "id": "grind2"
+      "id": "grind2",
+      "actorType": "grind"
     },
     {
-      "id": "grind3"
+      "id": "grind3",
+      "actorType": "grind"
     },
     {
-      "id": "grind4"
+      "id": "grind4",
+      "actorType": "grind"
     },
     {
-      "id": "grind5"
+      "id": "grind5",
+      "actorType": "grind"
     },
     {
-      "id": "grind6"
+      "id": "grind6",
+      "actorType": "grind"
     },
     {
-      "id": "chest"
+      "id": "chest",
+      "actorType": "chest"
     },
     {
-      "id": "mushroom1"
+      "id": "mushroom1",
+      "actorType": "mushroom"
     },
     {
-      "id": "mushroom2"
+      "id": "mushroom2",
+      "actorType": "mushroom"
     },
     {
-      "id": "mushroom3"
+      "id": "mushroom3",
+      "actorType": "mushroom"
     }
   ],
   "decoration": [
     {
-      "id": "tree1"
+      "id": "tree1",
+      "actorType": "tree"
     },
     {
-      "id": "tree2"
+      "id": "tree2",
+      "actorType": "tree"
     },
     {
-      "id": "tree3"
+      "id": "tree3",
+      "actorType": "tree"
     },
     {
-      "id": "tree4"
+      "id": "tree4",
+      "actorType": "tree"
     },
     {
-      "id": "tree5"
+      "id": "tree5",
+      "actorType": "tree"
     },
     {
-      "id": "tree6"
+      "id": "tree6",
+      "actorType": "tree"
     },
     {
-      "id": "bush1"
+      "id": "bush1",
+      "actorType": "bush"
     },
     {
-      "id": "bush2"
+      "id": "bush2",
+      "actorType": "bush"
     },
     {
-      "id": "bush3"
+      "id": "bush3",
+      "actorType": "bush"
     },
     {
-      "id": "bush4"
+      "id": "bush4",
+      "actorType": "bush"
     },
     {
-      "id": "bush5"
+      "id": "bush5",
+      "actorType": "bush"
     },
     {
-      "id": "bush6"
+      "id": "bush6",
+      "actorType": "bush"
     },
     {
-      "id": "bush7"
+      "id": "bush7",
+      "actorType": "bush"
     }
   ]
 }
